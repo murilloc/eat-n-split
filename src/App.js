@@ -53,19 +53,25 @@ function App() {
     }
 
     return (<div className='app'>
-        <div className='sidebar'>
-            <FriendList
-                friends={friends}
-                selectedFriend={selectedFriend}
-                onSelection={handleSelectFriend}
-            />
-            {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}/>}
-            <Button
-                onClick={handleShowAddFriend}>{showAddFriend ? 'close' : 'Add Friend'}
-            </Button>
+            <div className='sidebar'>
+                <FriendList
+                    friends={friends}
+                    selectedFriend={selectedFriend}
+                    onSelection={handleSelectFriend}
+                />
+                {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}/>}
+                <Button
+                    onClick={handleShowAddFriend}>{showAddFriend ? 'close' : 'Add Friend'}
+                </Button>
+            </div>
+            {selectedFriend && (
+                <FormSplitBill
+                    onSplitBill={handleSplitBill}
+                    selectedFriend={selectedFriend}
+                    key={selectedFriend.id}
+                />)}
         </div>
-        {selectedFriend && <FormSplitBill onSplitBill={handleSplitBill} selectedFriend={selectedFriend}/>}
-    </div>);
+    );
 }
 
 
